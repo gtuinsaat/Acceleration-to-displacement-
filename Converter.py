@@ -10,15 +10,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.integrate 
 
-datafile_acc=pd.read_excel("19980627135553_0105.xlsx")
-data_acc=datafile_acc["N-S"]*0.01;#gal to m/s^2
-acceleration = list(data_acc)
+datafile_acc=pd.read_excel("19980627135553_0105.xlsx")#read your data file
+data_acc=datafile_acc["N-S"]*0.01;#gal to m/s^2 convert units
+acceleration = list(data_acc) #make data type as list
 #velocity = [0]
-time_step = 0.005
-N=5843;
-time = np.linspace(0.0, N*time_step, N)
-velocity=scipy.integrate.cumtrapz(acceleration, x=time)
-displacement=scipy.integrate.cumtrapz(velocity, x=time[:-1])
+time_step = 0.005# time step of ground motion data
+N=5843;#number of total step
+time = np.linspace(0.0, N*time_step, N) # duration vector 
+velocity=scipy.integrate.cumtrapz(acceleration, x=time) #acceleration to velocity
+displacement=scipy.integrate.cumtrapz(velocity, x=time[:-1]) #velocity to displacement
 #for acc in acceleration:
 #    velocity.append(velocity[-1] + acc * time)file:///C:/Users/casper/Desktop/WONG-ENERGY/analysis/pushover_4%25
 #del velocity[0]
